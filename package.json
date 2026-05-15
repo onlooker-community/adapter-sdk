@@ -1,0 +1,54 @@
+{
+	"name": "@onlooker-community/adapter-sdk",
+	"version": "0.1.0",
+	"description": "Foundational SDK for Onlooker runtime adapters — defines the OnlookerRuntimeAdapter interface, base class, and canonical event writer.",
+	"type": "module",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"ci": "npx @biomejs/biome ci",
+		"lint": "npx @biomejs/biome lint",
+		"lint:fix": "npx @biomejs/biome lint --fix",
+		"format": "npx @biomejs/biome format",
+		"format:fix": "npx @biomejs/biome format --write",
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit",
+		"prepublishOnly": "npm run build && npm test"
+	},
+	"peerDependencies": {
+		"@onlooker-community/schema": "^0.1.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.14",
+		"@onlooker-community/schema": "^0.1.0",
+		"@types/node": "^20.0.0",
+		"typescript": "^5.0.0",
+		"vitest": "^1.0.0"
+	},
+	"keywords": [
+		"onlooker",
+		"adapter",
+		"runtime",
+		"sdk",
+		"canonical-events"
+	],
+	"license": "Apache-2.0",
+	"author": "Onlooker Community",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/onlooker-community/adapter-sdk.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
