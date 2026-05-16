@@ -3,14 +3,13 @@
 // Uses a temp dir per test so the canonical JSONL writer can be
 // exercised end-to-end without touching the real `~/.onlooker` tree.
 
+import { randomUUID } from "node:crypto";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { randomUUID } from "node:crypto";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
-
-import { BaseAdapter, EventWriter, eventLogPath } from "./index.js";
 import type { OnlookerEvent } from "@onlooker-community/schema";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { BaseAdapter, EventWriter, eventLogPath } from "./index.js";
 
 // ── Test double ──────────────────────────────────────────────────────────
 

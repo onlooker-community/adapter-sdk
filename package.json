@@ -21,9 +21,15 @@
 		"lint:fix": "npx @biomejs/biome lint --fix",
 		"format": "npx @biomejs/biome format",
 		"format:fix": "npx @biomejs/biome format --write",
+		"fix": "npx @biomejs/biome check --write",
 		"test": "vitest run",
 		"typecheck": "tsc --noEmit",
+		"verify": "npm run ci && npm run typecheck && npm run test && npm run build",
+		"prepare": "simple-git-hooks",
 		"prepublishOnly": "npm run build && npm test"
+	},
+	"simple-git-hooks": {
+		"pre-push": "npm run verify"
 	},
 	"peerDependencies": {
 		"@onlooker-community/schema": "^0.1.0"
@@ -32,6 +38,7 @@
 		"@biomejs/biome": "2.4.14",
 		"@onlooker-community/schema": "^0.1.0",
 		"@types/node": "^20.0.0",
+		"simple-git-hooks": "^2.13.1",
 		"typescript": "^5.0.0",
 		"vitest": "^1.0.0"
 	},

@@ -30,7 +30,12 @@ export function eventLogPath(
 	event: OnlookerEvent,
 	rootDir: string = join(homedir(), ".onlooker"),
 ): string {
-	return join(rootDir, event.runtime, event.plugin, `${event.session_id}.jsonl`);
+	return join(
+		rootDir,
+		event.runtime,
+		event.plugin,
+		`${event.session_id}.jsonl`,
+	);
 }
 
 /**
