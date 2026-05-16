@@ -111,6 +111,24 @@ writer.write(event);
 console.log(writer.pathFor(event));
 ```
 
+## Local development
+
+After cloning, `npm install` runs `simple-git-hooks` via `prepare` and
+installs a `pre-push` hook that mirrors CI:
+
+```sh
+npm run verify    # biome ci → typecheck → test → build
+```
+
+The same four commands run in GitHub Actions, so a green `verify` is a
+green PR. To skip the hook in an emergency, `SKIP_SIMPLE_GIT_HOOKS=1 git push`.
+
+To auto-fix Biome lint, format, and import-sort findings in one go:
+
+```sh
+npm run fix       # biome check --write
+```
+
 ## License
 
 Apache-2.0
