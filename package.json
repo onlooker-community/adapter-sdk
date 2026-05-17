@@ -1,6 +1,6 @@
 {
 	"name": "@onlooker-community/adapter-sdk",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Foundational SDK for Onlooker runtime adapters — defines the OnlookerRuntimeAdapter interface, base class, and canonical event writer.",
 	"type": "module",
 	"main": "./dist/index.js",
