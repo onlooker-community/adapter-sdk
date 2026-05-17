@@ -15,7 +15,13 @@ jobs:
       - uses: googleapis/release-please-action@v4
         with:
           release-type: node
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Use a PAT instead of GITHUB_TOKEN so the release PR triggers
+          # downstream workflows (CI, etc.). Events caused by GITHUB_TOKEN
+          # deliberately do not fan out to other workflows; that policy
+          # leaves release PRs unchecked. Set RELEASE_PLEASE_PAT to a
+          # fine-grained token with Contents:write + Pull requests:write
+          # scoped to this repo.
+          token: ${{ secrets.RELEASE_PLEASE_PAT }}
 
       # Publishing to npm is now handled by publish-npm.yml — triggered
       # by the `v*.*.*` tag release-please creates when a release PR
