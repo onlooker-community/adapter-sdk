@@ -13,27 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
-        id: release
         with:
           release-type: node
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v6
-        if: ${{ steps.release.outputs.release_created }}
-
-      - uses: actions/setup-node@v4
-        if: ${{ steps.release.outputs.release_created }}
-        with:
-          node-version: '22'
-          registry-url: 'https://registry.npmjs.org/'
-
-      - run: npm ci
-        if: ${{ steps.release.outputs.release_created }}
-
-      - run: npm run build
-        if: ${{ steps.release.outputs.release_created }}
-
-      - run: npm publish
-        if: ${{ steps.release.outputs.release_created }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+      # Publishing to npm is now handled by publish-npm.yml — triggered
+      # by the `v*.*.*` tag release-please creates when a release PR
+      # merges. Keeping the two concerns separate gives the publish
+      # path a multi-Node test matrix, npm provenance, and a
+      # workflow_dispatch fallback for emergency publishes.
